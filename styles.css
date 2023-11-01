@@ -1,10 +1,10 @@
 body{
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-  font-size: 14px;
+  font-size: 20px;
   line-height: 1.428571429;
   color: #333;
 }
-.back{
+.highlight{
   background-color: #dddddd;
   color: #000;
 }
@@ -16,7 +16,7 @@ body{
   margin:0 auto;
   /* word-wrap: break-word */
    word-wrap: normal;
-   visibility: hidden;
+   /* visibility: hidden; */
 }
 
 span{
@@ -31,7 +31,7 @@ span{
 .full{
   position:relative; z-index: 1;
 }
-.clear{
+/* .clear{
   background-color:red;
   position:fixed;
   top:50;
@@ -46,4 +46,16 @@ span{
   width: 100px;
   position:fixed;
   z-index: 1
+} */
+
+
+.correct{
+  color:green;
+}
+.mistake{
+  color:red;
+}
+
+.wrong-typed{
+  background-color: red;
 }
