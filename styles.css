@@ -1,3 +1,9 @@
+body{
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.428571429;
+  color: #333;
+}
 .back{
   background-color: #dddddd;
   color: #000;
@@ -10,6 +16,7 @@
   margin:0 auto;
   /* word-wrap: break-word */
    word-wrap: normal;
+   visibility: hidden;
 }
 
 span{
@@ -19,4 +26,24 @@ span{
 .full{
   text-align: center;
   margin:0 auto;
+}
+
+.full{
+  position:relative; z-index: 1;
+}
+.clear{
+  background-color:red;
+  position:fixed;
+  top:50;
+  height: 100px;
+  width: 100px;
+  z-index: 1;
+}
+                
+.not-clear{
+  background-color:blue;
+  height: 100px;
+  width: 100px;
+  position:fixed;
+  z-index: 1
 }

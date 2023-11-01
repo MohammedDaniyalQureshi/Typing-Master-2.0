@@ -2,6 +2,7 @@ const textarea = document.querySelector('.textarea')
 const input = document.querySelector('input')
 const allSpan = document.querySelector('.allSpan')
 const icon = document.querySelector('i')
+const timer = document.querySelector('.timer')
 let i = 0
 
 
@@ -19,11 +20,22 @@ function createSpans(words){
     }
 }
 
+
+let seconds = 59
+let timerstart = false
+async function startTimer(){
+     let tt = setInterval(() => {
+            if(seconds === 0) clearInterval(tt)
+            timer.innerText = `00.${seconds--}`           
+        },1000)
+    }
+
+
 //https://random-word-api.vercel.app/api?words=10
 async function fetchData(){
-  const response = await fetch('https://random-word-api.vercel.app/api?words=100')
-  const words = await response.json()
-   createSpans(words)
+    const response = await fetch('https://random-word-api.vercel.app/api?words=100')
+    const words = await response.json()
+    createSpans(words)
 }
 
 fetchData().then(() => {
@@ -42,6 +54,13 @@ fetchData().then(() => {
             console.log(spans[i].offsetTop)
         }
     })
+})
+
+input.addEventListener('input',() => {
+    if(!timerstart){
+        startTimer()
+        timerstart = true
+    }
 })
 
 
