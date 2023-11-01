@@ -1,0 +1,22 @@
+.back{
+  background-color: #dddddd;
+  color: #000;
+}
+
+.allSpan{
+  height:300px;
+  width:300px;
+  text-align: center;
+  margin:0 auto;
+  /* word-wrap: break-word */
+   word-wrap: normal;
+}
+
+span{
+  margin-right: 10px;
+}
+
+.full{
+  text-align: center;
+  margin:0 auto;
+}
