@@ -1,8 +1,11 @@
 const textarea = document.querySelector('.textarea')
 const input = document.querySelector('input')
 const allSpan = document.querySelector('.allSpan')
+const dummy = document.querySelector('.dummy')
 const timer = document.querySelector('.timer')
 let i = 0
+let correctWords = 0
+let wrongWords = 0
 
 
 document.querySelector('i')
@@ -14,7 +17,10 @@ let seconds = 59
 let timerstart = false
 async function startTimer() {
     let tt = setInterval(() => {
-        if (seconds === 0) clearInterval(tt)
+        if (seconds === 0) {
+            console.log(correctWords, wrongWords)
+            clearInterval(tt)
+        }
         timer.innerText = `0:${seconds--}`
     }, 1000)
 }
@@ -46,6 +52,7 @@ fetchData().then(() => {
             startTimer()
             timerstart = true
         }
+        // if(e.target.value.slice(-1) === ' ') dummy.append('hey')
         // let re = new RegExp(pattern, `/^${spans[i].innerText.trim()}$/`);
         //patternGen(spans[i].innerText.trim())
         let re = new RegExp(patternGen(spans[i].innerText.trim()));    // will match <XYZ>
@@ -63,18 +70,49 @@ fetchData().then(() => {
             // console.log(re, e.target.value.trim())
         }
     })
-    input.addEventListener('keydown', (e) => {
+    // input.addEventListener('keydown', (e) => {
+    //     // console.log(spans)
+    //     let re = new RegExp(patternGen(spans[i].innerText.trim()));
+    //     // console.log(e.code)
+    //     // dummy.append(e.code)
+    //     if (e.code === 'Space') {
+    //         if (re.test(e.target.value.trim())) {
+    //             //console.log('x'+spans[i].innerText.trim()+'x','x'+e.target.value.trim()+'x')
+    //             spans[i].classList.add('correct')
+    //             correctWords++
+    //         } else {
+    //             // console.log('error')
+
+    //             spans[i].classList.remove('wrong-typed')
+    //             spans[i].classList.add('mistake')
+    //             wrongWords++
+    //         }
+    //         e.target.value = ''
+    //         //console.log(e)
+    //         spans[i].classList.toggle('highlight')
+    //         spans[i + 1].classList.toggle('highlight')
+    //         i++
+    //         //spans[i].classList.toggle('back')
+    //         //console.log(allSpan)
+    //         console.log(spans[i].offsetTop)
+    //     }
+    // })
+    input.addEventListener('input', (e) => {
         // console.log(spans)
-        let re = new RegExp(patternGen(spans[i].innerText.trim())); 
-        if (e.code === 'Space') {
+        let re = new RegExp(patternGen(spans[i].innerText.trim()));
+        // console.log(e.code)
+        // dummy.append(e.code)
+        if (e.target.value.slice(-1) === ' ') {
             if (re.test(e.target.value.trim())) {
                 //console.log('x'+spans[i].innerText.trim()+'x','x'+e.target.value.trim()+'x')
                 spans[i].classList.add('correct')
+                correctWords++
             } else {
                 // console.log('error')
 
                 spans[i].classList.remove('wrong-typed')
                 spans[i].classList.add('mistake')
+                wrongWords++
             }
             e.target.value = ''
             //console.log(e)
