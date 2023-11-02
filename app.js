@@ -9,16 +9,6 @@ document.querySelector('i')
     .addEventListener('click', () => window.location.reload(true))
 
 
-function createSpans(words) {
-    for (let i = 0; i < words.length; i++) {
-        const span = document.createElement('span')
-        span.innerText = `${words[i]} ` //space included
-        // console.log(span, allSpan)
-        allSpan.appendChild(span)
-
-    }
-}
-
 
 let seconds = 59
 let timerstart = false
@@ -37,6 +27,17 @@ async function fetchData() {
     createSpans(words)
 }
 
+// Generate multiple span with list of words
+function createSpans(words) {
+    for (let i = 0; i < words.length; i++) {
+        const span = document.createElement('span')
+        span.innerText = `${words[i]} ` //space included
+        // console.log(span, allSpan)
+        allSpan.appendChild(span)
+
+    }
+}
+
 fetchData().then(() => {
     const spans = document.querySelectorAll('span')
     spans[i].classList.toggle('highlight')
@@ -46,25 +47,27 @@ fetchData().then(() => {
             timerstart = true
         }
         // let re = new RegExp(pattern, `/^${spans[i].innerText.trim()}$/`);
-        let re = new RegExp(`^${spans[i].innerText.trim()}$`);    // will match <XYZ>
+        //patternGen(spans[i].innerText.trim())
+        let re = new RegExp(patternGen(spans[i].innerText.trim()));    // will match <XYZ>
 
         // var input = "<XYZ> Some text </XYZ>";
         // var output = regexObj.test(input);
-        if (!(spans[i].innerText.trim().includes(e.target.value.trim()))) {
+        if (!(re.test(e.target.value.trim()))) {
             // console.log
             spans[i].classList.add('wrong-typed')
             // console.log(re, e.target.value.trim())
-            console.log(re.test(e.target.value.trim()))
+            // console.log(re.test(e.target.value.trim()))
         } else {
             spans[i].classList.remove('wrong-typed')
             // console.log(re.test(e.target.value.trim()))
-            console.log(re, e.target.value.trim())
+            // console.log(re, e.target.value.trim())
         }
     })
     input.addEventListener('keydown', (e) => {
         // console.log(spans)
+        let re = new RegExp(patternGen(spans[i].innerText.trim())); 
         if (e.code === 'Space') {
-            if (spans[i].innerText.trim().includes(e.target.value.trim())) {
+            if (re.test(e.target.value.trim())) {
                 //console.log('x'+spans[i].innerText.trim()+'x','x'+e.target.value.trim()+'x')
                 spans[i].classList.add('correct')
             } else {
