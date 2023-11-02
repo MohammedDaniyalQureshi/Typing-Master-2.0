@@ -52,10 +52,14 @@ fetchData().then(() => {
             startTimer()
             timerstart = true
         }
+
+        if(e.target.value.slice(0)=== ' ') e.target.value = ''
+        
         // if(e.target.value.slice(-1) === ' ') dummy.append('hey')
         // let re = new RegExp(pattern, `/^${spans[i].innerText.trim()}$/`);
         //patternGen(spans[i].innerText.trim())
         let re = new RegExp(patternGen(spans[i].innerText.trim()));    // will match <XYZ>
+            // will match <XYZ>
 
         // var input = "<XYZ> Some text </XYZ>";
         // var output = regexObj.test(input);
@@ -99,11 +103,13 @@ fetchData().then(() => {
     // })
     input.addEventListener('input', (e) => {
         // console.log(spans)
-        let re = new RegExp(patternGen(spans[i].innerText.trim()));
+        let re1 = new RegExp(patternGen(spans[i].innerText.trim()));
+        let re2 = new RegExp(`^${spans[i].innerText.trim()}$`);
         // console.log(e.code)
         // dummy.append(e.code)
-        if (e.target.value.slice(-1) === ' ') {
-            if (re.test(e.target.value.trim())) {
+        if (e.target.value.slice(-1) === ' ' && e.target.value.trim()) {
+            if (re1.test(e.target.value.trim()) && re2.test(e.target.value.trim())) {
+                console.log(e.target.value.trim(),re1.test(e.target.value.trim()), re2.test(e.target.value.trim()), re1, re2 )
                 //console.log('x'+spans[i].innerText.trim()+'x','x'+e.target.value.trim()+'x')
                 spans[i].classList.add('correct')
                 correctWords++
