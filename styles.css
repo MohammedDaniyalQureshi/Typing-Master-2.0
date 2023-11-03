@@ -1,7 +1,7 @@
 body{
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size: 20px;
-  line-height: 1.428571429;
+  line-height: 1.5;
   color: #333;
 }
 .highlight{
@@ -11,6 +11,8 @@ body{
 
 .allSpan{
   height:300px;
+  position: relative;
+  /* border: #000 1px solid; */
   width:500px;
   text-align: center;
   margin:0 auto;
@@ -107,7 +109,10 @@ span{
   display: none;
   width:100vh;
   height: 100vh;
-  position: absolute;
+  position: fixed;
+  top:0;
+  right:0;
+  left:0;
   z-index: 2;
   background-color: #000;
 

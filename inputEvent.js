@@ -2,14 +2,19 @@ const timer = document.querySelector('.timer')
 let shouldStartTimer = true
 
 async function startTimer() {
-    let seconds = 59
+    let seconds = 5
     let tt = setInterval(() => {
         if (seconds === 0) {
-            document.querySelector('.result').style.display = 'block'
+            // document.querySelector('.result').style.display = 'block'
             console.log(correctWords, wrongWords)
             clearInterval(tt)
         }
-        timer.innerText = `0:${seconds--}`
+        if(seconds<10){
+            timer.innerText = `00:0${seconds--}`
+        }else{            
+            timer.innerText = `00:${seconds--}`
+        }
+
     }, 1000)
 }
 

@@ -1,4 +1,11 @@
+let scroll = 64
 function spacebarEvent(e, spans){
+    console.log(spans[i].offsetTop)
+    if(spans[i].offsetTop === scroll){
+        document.querySelector('.allSpan').style.top = `-${spans[i].offsetTop}px`
+        scroll = scroll + 60
+        // console.log(spans[i].offsetTop)
+    }
 
     // No need to check for empty just space hanled in the inputEvent function
     if (e.target.value.slice(-1) === ' ') {
@@ -15,6 +22,5 @@ function spacebarEvent(e, spans){
         spans[i].classList.toggle('highlight')
         spans[i + 1].classList.toggle('highlight')
         i++
-        console.log(spans[i].offsetTop)
     }
 }

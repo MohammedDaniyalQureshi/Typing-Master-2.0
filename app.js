@@ -1,5 +1,10 @@
 const input = document.querySelector('input')
 
+
+// document.querySelector('button').addEventListener('click', () => {
+//     document.querySelector('.allSpan').style.top = '100px';
+// })
+
 let i = 0
 let correctWords = 0
 let wrongWords = 0
